@@ -1,4 +1,5 @@
 #include "main.h"
+#include <unistd.h>
 
 /**
  * print_int - Print an integer value using putchar.
@@ -15,11 +16,11 @@
 
 int print_int(va_list args)
 {
-	int magnitude = 1;
+	int mag = 1;
 	int count = 0;
 
 	long int number = va_arg(args, int);
-	long int remaining_nums;
+	long int rem_nums;
 
 	if (number < 0)
 	{
@@ -29,18 +30,18 @@ int print_int(va_list args)
 
 	if (number < 10)
 		return (count += _putchar(number + '0'));
-	remaining_nums = number;
+	rem_nums = number;
 
-	while (remaining_nums > 9)
+	while (rem_nums > 9)
 	{
-		number *= 10;
-		remaining_nums /= 10;
+		mag *= 10;
+		rem_nums /= 10;
 	}
 
-	while (magnitude >= 1)
+	while (mag >= 1)
 	{
-		count += _putchar(((number / magnitude) % 10) + '0');
-		magnitude /= 10;
+		count += _putchar(((number / mag) % 10) + '0');
+		mag /= 10;
 	}
 
 	return (count);
